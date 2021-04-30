@@ -31,13 +31,13 @@ if __name__=='__main__':
 		dead_file=sys.argv[3]
 	emails=open(sys.argv[1],'r').read().split('\n')
 	options = webdriver.ChromeOptions()
-	#options.add_argument('--headless')
+	# options.add_argument('--headless')
 	options.add_argument('log-level=3')
 	prefs={"profile.managed_default_content_settings.images": 2}
 	options.add_experimental_option('prefs', prefs)
 	prefs={'disk-cache-size': 10240}
 	options.add_experimental_option('prefs', prefs)
-	driver = webdriver.Chrome(chrome_options=options)
+	# driver = webdriver.Chrome(chrome_options=options)
 	for email in emails:
 		if not(email) or len(email)<4:
 			continue
@@ -51,14 +51,18 @@ if __name__=='__main__':
 			print(email,"registed")
 		"""
 		try:
-			# driver = webdriver.Chrome()
+			driver = webdriver.Chrome(chrome_options=options)
 			driver.get(url)
 			#print(dir(driver))
 			#L=driver.getWindowHandles()
 			#print(L)
 			wait(driver, 50).until(EC.presence_of_element_located((By.ID, 'start')))
-			c_mail=driver.find_element_by_id("start")
+			wait(driver, 50).until(EC.presence_of_element_located((By.ID, 'email-input')))
+			c_mail=driver.find_element_by_id("email-input")
 			c_mail.send_keys(email)
+			c_submit=driver.find_element_by_id("start")
+			c_submit.click()
+			time.sleep(2)
 			# https://www.marksandspencer.com/webapp/wcs/stores/servlet/MSResLogin
 			# https://www.marksandspencer.com/webapp/wcs/stores/servlet/MSResUserRegistration
 			print(driver.current_url)
@@ -98,7 +102,7 @@ if __name__=='__main__':
 			except:
 				F3.close()
 			F3.close()
-			#driver.close()
+			driver.quit()
 			#time.sleep(1)
 		except Exception as e:
 			print(e)
