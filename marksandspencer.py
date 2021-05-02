@@ -31,7 +31,7 @@ if __name__=='__main__':
 		dead_file=sys.argv[3]
 	emails=open(sys.argv[1],'r').read().split('\n')
 	options = webdriver.ChromeOptions()
-	# options.add_argument('--headless')
+	options.add_argument('--headless')
 	options.add_argument('log-level=3')
 	prefs={"profile.managed_default_content_settings.images": 2}
 	options.add_experimental_option('prefs', prefs)
@@ -58,11 +58,11 @@ if __name__=='__main__':
 			#print(L)
 			wait(driver, 300).until(EC.presence_of_element_located((By.ID, 'start')))
 			wait(driver, 300).until(EC.presence_of_element_located((By.ID, 'email-input')))
+			# wait.until(ExpectedConditions.invisibilityOfElementLocated((By.ID, 'start')));
 			c_mail=driver.find_element_by_id("email-input")
 			c_mail.send_keys(email)
 			c_submit=driver.find_element_by_id("start")
-			c_submit.click()
-			time.sleep(5)
+			driver.execute_script("arguments[0].click();", c_submit)
 			# https://www.marksandspencer.com/webapp/wcs/stores/servlet/MSResLogin
 			# https://www.marksandspencer.com/webapp/wcs/stores/servlet/MSResUserRegistration
 			print(driver.current_url)
