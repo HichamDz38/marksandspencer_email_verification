@@ -63,6 +63,7 @@ if __name__=='__main__':
 			c_mail.send_keys(email)
 			c_submit=driver.find_element_by_id("start")
 			driver.execute_script("arguments[0].click();", c_submit)
+			time.sleep(2)
 			# https://www.marksandspencer.com/webapp/wcs/stores/servlet/MSResLogin
 			# https://www.marksandspencer.com/webapp/wcs/stores/servlet/MSResUserRegistration
 			print(driver.current_url)
