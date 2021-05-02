@@ -51,7 +51,7 @@ if __name__=='__main__':
 			print(email,"registed")
 		"""
 		try:
-			driver = webdriver.Chrome(chrome_options=options)
+			driver = webdriver.Chrome(options=options)
 			driver.get(url)
 			#print(dir(driver))
 			#L=driver.getWindowHandles()
