@@ -62,7 +62,7 @@ if __name__=='__main__':
 			c_mail.send_keys(email)
 			c_submit=driver.find_element_by_id("start")
 			c_submit.click()
-			time.sleep(2)
+			time.sleep(5)
 			# https://www.marksandspencer.com/webapp/wcs/stores/servlet/MSResLogin
 			# https://www.marksandspencer.com/webapp/wcs/stores/servlet/MSResUserRegistration
 			print(driver.current_url)
@@ -108,5 +108,3 @@ if __name__=='__main__':
 			print(e)
 			driver.quit()
 			time.sleep(1)
-			driver = webdriver.Chrome(chrome_options=options)
-	driver.quit()
