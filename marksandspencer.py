@@ -42,7 +42,7 @@ if __name__=='__main__':
 		dead_file=sys.argv[3]
 	emails=open(sys.argv[1],'r').read().split('\n')
 	options = webdriver.ChromeOptions()
-	# options.add_argument('--headless')
+	options.add_argument('--headless')
 	options.add_argument('log-level=3')
 	prefs={"profile.managed_default_content_settings.images": 2}
 	options.add_experimental_option('prefs', prefs)
